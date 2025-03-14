@@ -21,20 +21,25 @@
       {
         "name": "next"
       }
-    ]
+    ],
+    "strictNullChecks": true
   },
   "include": [
     "next-env.d.ts",
     ".next/types/**/*.ts",
     "**/*.ts",
     "**/*.tsx"
-  ],
+, "src/app/layout.tsx.old"  ],
   "exclude": [
     "node_modules"
   ],
   "baseUrl": "src/",
   "paths": {
-    "@/styles/*": ["styles/*"],
-    "@/components/*": ["components/*"]
+    "@/styles/*": [
+      "styles/*"
+    ],
+    "@/components/*": [
+      "components/*"
+    ]
   }
 }
