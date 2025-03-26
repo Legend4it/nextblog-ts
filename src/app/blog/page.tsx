@@ -8,6 +8,8 @@ type Post = {
 };
 
 export default async function Blog() {
+
+  await new Promise((r) => setTimeout(r, 2000)); // Just to simulate a slow connection
   const res = await fetch("https://jsonplaceholder.typicode.com/posts");
   const posts: Post[] = await res.json();
 
