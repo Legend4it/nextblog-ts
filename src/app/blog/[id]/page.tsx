@@ -1,5 +1,6 @@
-import { GetStaticPaths, GetStaticProps } from "next";
-import Layout from "@/components/layout";
+
+import notFound from "@/not-found";
+import Layout from "@/layout";
 
 
 interface Post {
@@ -7,12 +8,21 @@ interface Post {
   title: string;
   body: string;
 }
+type Params = {
+  params: {
+    id: string;
+  };
+};
 
-export default async function BlogPost({ params }: { params: { id: string } }) {
-  const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${params.id}`);
+
+export default async function BlogPost({ params }: Params) {
+
+  const { id } = await params;
+  
+  const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`);
 
   if (!res.ok) {
-    throw new Error('Post not found');
+    return notFound();
   }
 
   const post: Post = await res.json();
@@ -32,3 +42,4 @@ export default async function BlogPost({ params }: { params: { id: string } }) {
     </Layout>
   );
 }
+
